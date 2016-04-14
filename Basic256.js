@@ -8,7 +8,7 @@ function randomValueHex (len) {
         .slice(0,len);   // return required number of characters
 };
 
-var key1, ALGORITHM, KEY, HMAC_ALGORITHM, HMAC_KEY;
+var ALGORITHM, KEY, HMAC_ALGORITHM, HMAC_KEY;
 
 ALGORITHM = 'AES-256-CBC'; // CBC because CTR isn't possible with the current version of the Node.JS crypto library
 HMAC_ALGORITHM = 'SHA256';
