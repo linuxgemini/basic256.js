@@ -12,8 +12,8 @@ var ALGORITHM, KEY, HMAC_ALGORITHM, HMAC_KEY;
 
 ALGORITHM = 'AES-256-CBC'; // CBC because CTR isn't possible with the current version of the Node.JS crypto library
 HMAC_ALGORITHM = 'SHA256';
-KEY = randomValueHex(32); // This key should be stored in an environment variable
-HMAC_KEY = randomValueHex(32); // This key should be stored in an environment variable
+KEY = randomValueHex(32); // This key should be stored in somewhere
+HMAC_KEY = randomValueHex(32); // This key should be stored in somewhere, again
 
 var constant_time_compare = function (val1, val2) {
     var sentinel;
