@@ -5,6 +5,8 @@ RANDOMfilename=`cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32`
 
 echo "Keys will be stored on ./$RANDOMfoldername/$RANDOMfilename.json"
 
+mkdir $RANDOMfoldername
+
 node DontRunMe.js >> ./$RANDOMfoldername/$RANDOMfilename.json
 sed -i "5ilet savedKeys = require(\"./$RANDOMfoldername/$RANDOMfilename.json\");" Basic256.js
 
