@@ -8,9 +8,9 @@ echo "Keys will be stored on ./$RANDOMfoldername/$RANDOMfilename.json"
 mkdir $RANDOMfoldername
 
 node DontRunMe.js >> ./$RANDOMfoldername/$RANDOMfilename.json
-sed -i "5ilet savedKeys = require(\"./$RANDOMfoldername/$RANDOMfilename.json\");" Basic256.js
+sed -i "5ilet savedKeys = require(\"./$RANDOMfoldername/$RANDOMfilename.json\");" basic256.js
 
-echo "Keys are saved and attached to the Basic256.js file."
+echo "Keys are saved and attached to the basic256.js file."
 
 rm DontRunMe.js
 rm runMeFirst.sh
