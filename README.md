@@ -3,7 +3,7 @@ basic256.js
 
 A basic encryption/decryption script/API for Node.js users.
 
-*Slightly* modified the work by [Levi Gross](http://www.levigross.com/2014/03/30/how-to-write-an-encrypt-and-decrypt-api-for-data-at-rest-in-nodejs/).
+*Slightly* modified the work of [Levi Gross](http://www.levigross.com/2014/03/30/how-to-write-an-encrypt-and-decrypt-api-for-data-at-rest-in-nodejs/).
 
 Usage
 -----
