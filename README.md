@@ -2,12 +2,13 @@ Basic256.js
 =========================
 
 A basic encryption/decryption script/API for Node.js users.
+
 Based on the work by [Levi Gross](http://www.levigross.com/2014/03/30/how-to-write-an-encrypt-and-decrypt-api-for-data-at-rest-in-nodejs/).
 
 Usage
 -----
 
-Gather Basic256.js,
+Gather Basic256.js first,
 Make your script connected. Example:
 
         var crypter = require("./Basic256.js");
