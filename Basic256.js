@@ -1,6 +1,6 @@
 // HELP ME MAKE THIS SHITTY CIPHER API GREAT AGAIN //
 
-crypto = require('crypto');
+let crypto = require('crypto');
 
 function randomValueHex (len) {
     return crypto.randomBytes(Math.ceil(len/2))
