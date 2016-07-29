@@ -8,8 +8,13 @@ Based on the work by [Levi Gross](http://www.levigross.com/2014/03/30/how-to-wri
 Usage
 -----
 
-Gather Basic256.js first,
-Make your script connected. Example:
+Gather Basic256.js first, copy all files inside to your project folder/direcory.
+
+And do these:
+        chmod +x runMeFirst.sh
+        ./runMeFirst.sh
+
+Then make your script connected. Example:
 
         var crypter = require("./Basic256.js");
         
