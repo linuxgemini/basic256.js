@@ -1,8 +1,8 @@
-// HELP ME MAKE THIS SHITTY CIPHER API GREAT AGAIN //
-
+/* HELP ME MAKE THIS SHITTY CIPHER API GREAT AGAIN
+5th line is reserved for the automated script to attach the keys necessary. */
 let crypto = require('crypto');
-// 5th line is reserved for the automated script to attach the keys necessary. //
-// 5th line is reserved for the automated script to attach the keys necessary. //
+
+
 var ALGORITHM, KEY, HMAC_ALGORITHM, HMAC_KEY;
 
 ALGORITHM = 'AES-256-CBC'; // CBC because CTR isn't possible with the current version of the Node.JS crypto library
