@@ -1,19 +1,14 @@
 // HELP ME MAKE THIS SHITTY CIPHER API GREAT AGAIN //
 
 let crypto = require('crypto');
-
-function randomValueHex (len) {
-    return crypto.randomBytes(Math.ceil(len/2))
-        .toString('hex') // convert to hexadecimal format
-        .slice(0,len);   // return required number of characters
-};
-
+// 5th line is reserved for the automated script to attach the keys necessary. //
+// 5th line is reserved for the automated script to attach the keys necessary. //
 var ALGORITHM, KEY, HMAC_ALGORITHM, HMAC_KEY;
 
 ALGORITHM = 'AES-256-CBC'; // CBC because CTR isn't possible with the current version of the Node.JS crypto library
 HMAC_ALGORITHM = 'SHA256';
-KEY = randomValueHex(32); // This key should be stored in somewhere
-HMAC_KEY = randomValueHex(32); // This key should be stored in somewhere, again
+KEY = savedKeys.key; // This key should be stored in somewhere
+HMAC_KEY = savedKeys.hmac_key; // This key should be stored in somewhere, again
 
 var constant_time_compare = function (val1, val2) {
     var sentinel;
