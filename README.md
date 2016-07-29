@@ -11,6 +11,7 @@ Usage
 Gather Basic256.js first, copy all files inside to your project folder/direcory.
 
 And do these:
+
         chmod +x runMeFirst.sh
         ./runMeFirst.sh
 
