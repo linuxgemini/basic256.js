@@ -11,4 +11,7 @@ node DontRunMe.js >> ./$RANDOMfoldername/$RANDOMfilename.json
 sed -i "5ilet savedKeys = require(\"./$RANDOMfoldername/$RANDOMfilename.json\");" Basic256.js
 
 echo "Keys are saved and attached to the Basic256.js file."
+
+rm DontRunMe.js
+rm runMeFirst.sh
 exit
