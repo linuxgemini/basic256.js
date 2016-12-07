@@ -30,10 +30,8 @@ module.exports = {
     "enc": {
         run : function (plain_text) {
 
-            var IV = new Buffer(randomValueHex(16)); // ensure that the IV (initialization vector) is random
-            var cipher_text;
-            var hmac;
-            var encryptor;
+            var IV = Buffer.from(randomValueHex(16)); // ensure that the IV (initialization vector) is random
+            var encryptor, cipher_text, hmac;
 
             encryptor = crypto.createCipheriv(ALGORITHM, KEY, IV);
             encryptor.setEncoding('hex');
@@ -55,9 +53,9 @@ module.exports = {
         run : function (cipher_text) {
             var cipher_blob = cipher_text.split("$");
             var ct = cipher_blob[0];
-            var IV = new Buffer(cipher_blob[1], 'hex');
+            var IV = Buffer.from(cipher_blob[1], 'hex');
             var hmac = cipher_blob[2];
-            var decryptor;
+            var chmac, decryptor;
 
             chmac = crypto.createHmac(HMAC_ALGORITHM, HMAC_KEY);
             chmac.update(ct);
@@ -69,7 +67,7 @@ module.exports = {
             }
 
             decryptor = crypto.createDecipheriv(ALGORITHM, KEY, IV);
-            var decryptedText = decryptor.update(ct, 'hex', 'utf-8');
+            var decryptedText = decryptor.update(ct, 'hex', 'utf8');
             return decryptedText + decryptor.final('utf-8');
         }
     }
