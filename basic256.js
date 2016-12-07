@@ -67,7 +67,7 @@ module.exports = {
             }
 
             decryptor = crypto.createDecipheriv(ALGORITHM, KEY, IV);
-            var decryptedText = decryptor.update(ct, 'hex', 'utf8');
+            var decryptedText = decryptor.update(ct, 'hex', 'utf-8');
             return decryptedText + decryptor.final('utf-8');
         }
     }
