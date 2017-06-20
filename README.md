@@ -12,7 +12,7 @@ Gather basic256.js first, copy all files inside to your project folder/direcory.
 
 And do this **(If you have a Linux enviroment)**:
 
-        ./runMeFirst.sh
+        ./runMeFirst.bash
 
 Then make your script connected. Example:
 
