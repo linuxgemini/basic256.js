@@ -1,5 +1,5 @@
-/* HELP ME MAKE THIS SHITTY CIPHER API GREAT AGAIN
-5th line is reserved for the automated script to attach the keys necessary. */
+'use strict';
+/* 5th line is reserved for the automated script to attach the keys necessary. */
 let crypto = require('crypto');
 
 
