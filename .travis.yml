@@ -1,0 +1,14 @@
+language: node_js
+sudo: enabled
+dist: trusty
+node_js:
+  - "node"
+  - "7"
+  - "6"
+  - "5"
+  - "4"
+install:
+  - chmod +x ./runMeFirst.bash
+  - ./runMeFirst.bash
+script:
+  - npm test
