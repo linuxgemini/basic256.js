@@ -13,6 +13,6 @@
   },
   "license": "Apache-2",
   "scripts": {
-    "test": "test.js",
+    "test": "node test.js"
   }
 }
