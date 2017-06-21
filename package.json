@@ -1,0 +1,18 @@
+{
+  "name": "basic256.js",
+  "version": "0.0.1",
+  "description": "A basic encryption/decryption script/API for resting data for Node.js users.",
+  "readme": "README.md",
+  "maintainers": [
+    "linuxgemini (ilteris@asenkron.com.tr)"
+  ],
+  "author": "linuxgemini",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linuxgemini/basic256.js.git"
+  },
+  "license": "Apache-2",
+  "scripts": {
+    "test": "test.bash",
+  }
+}
