@@ -7,14 +7,18 @@ A basic encryption/decryption script/API for resting data for Node.js users.
 
 *Slightly* modified the work of [Levi Gross](http://www.levigross.com/2014/03/30/how-to-write-an-encrypt-and-decrypt-api-for-data-at-rest-in-nodejs/).
 
-Usage
+Usage without downloading from NPM
 -----
 
 Gather basic256.js first, copy all files inside to your project folder/direcory.
 
-And do this **(If you have a Linux enviroment)**:
+And do this on your terminalif you are not root:
 
-        ./runMeFirst.bash
+        npm install
+
+If you are running as root, do this:
+
+	npm install --unsafe-perm
 
 Then make your script connected. Example:
 
