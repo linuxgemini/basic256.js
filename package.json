@@ -13,7 +13,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "install": "node ./DontRunMe.js; rm -rf ./node_modules/",
+    "install": "node ./DontRunMe.js",
     "test": "node ./test.js"
   }
 }

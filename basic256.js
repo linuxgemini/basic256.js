@@ -7,7 +7,6 @@ function UserException(message) {
     this.name = 'UserException';
 }
 
-
 try {
     var savedKeys = require("./config.js").k;
 } catch (e) {
