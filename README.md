@@ -18,7 +18,7 @@ And do this on your terminalif you are not root:
 
 If you are running as root, do this:
 
-		npm install --unsafe-perm
+        npm install --unsafe-perm
 
 Then make your script connected. Example:
 
