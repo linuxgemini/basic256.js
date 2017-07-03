@@ -1,7 +1,18 @@
 'use strict';
-/* 5th line is reserved for the automated script to attach the keys necessary. */
+
 let crypto = require('crypto');
 
+function UserException(message) {
+    this.message = message;
+    this.name = 'UserException';
+}
+
+
+try {
+    var savedKeys = require("./config.js").k;
+} catch (e) {
+    throw new UserException('No Configuration Exists');
+}
 
 var ALGORITHM, KEY, HMAC_ALGORITHM, HMAC_KEY;
 

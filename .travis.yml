@@ -8,6 +8,6 @@ node_js:
   - "5"
   - "4"
 install:
-  - ./runMeFirst.bash
+  - npm install
 script:
   - npm test
