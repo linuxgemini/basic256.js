@@ -12,7 +12,7 @@ Usage without downloading from NPM
 
 Gather basic256.js first, copy all files inside to your project folder/direcory.
 
-And do this on your terminalif you are not root:
+And do this on your terminal if you are not root:
 
         npm install
 
