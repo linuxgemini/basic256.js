@@ -78,7 +78,7 @@ module.exports = {
             chmac.update(IV.toString('hex'));
 
             if (!constant_time_compare(chmac.digest('hex'), hmac)) {
-                console.log("Encrypted Blob has been tampered with...");
+                throw new Error("Encrypted Blob has been tampered with...");
                 return null;
             }
 
