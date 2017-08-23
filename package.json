@@ -1,6 +1,6 @@
 {
   "name": "basic256.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A basic encryption/decryption script/API for resting data for Node.js users.",
   "readme": "README.md",
   "maintainers": [
@@ -13,8 +13,8 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "install": "node ./DontRunMe.js",
-    "test": "node ./test.js"
+    "install": "node DontRunMe.js",
+    "test": "node test.js"
   },
   "main": "./basic256"
 }
