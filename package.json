@@ -1,6 +1,6 @@
 {
   "name": "basic256.js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A basic encryption/decryption script/API for resting data for Node.js users.",
   "readme": "README.md",
   "maintainers": [
