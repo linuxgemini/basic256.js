@@ -15,5 +15,6 @@
   "scripts": {
     "install": "node ./DontRunMe.js",
     "test": "node ./test.js"
-  }
+  },
+  "main": "./basic256"
 }

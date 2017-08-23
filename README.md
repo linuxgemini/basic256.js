@@ -24,8 +24,8 @@ Then make your script connected. Example:
 
         var crypter = require("./basic256.js");
         
-        var blob = crypter.enc.run("FOO"); // This encrypts the string "FOO".
+        var blob = crypter.encrypt("FOO").catch(console.error); // This encrypts the string "FOO".
         console.log(blob); // This will show the encrypted string.
         
-        var unblob = crypter.dec.run(blob); // This decrypts the encrypted string.
+        var unblob = crypter.decrypt(blob).catch(console.error); // This decrypts the encrypted string.
         console.log(unblob); // This will show the decrypted string. (Which in this case, it is "FOO")

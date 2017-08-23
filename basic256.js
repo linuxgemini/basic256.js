@@ -2,15 +2,10 @@
 
 let crypto = require('crypto');
 
-function UserException(message) {
-    this.message = message;
-    this.name = 'UserException';
-}
-
 try {
     var savedKeys = require("./config.js").k;
 } catch (e) {
-    throw new UserException('No Configuration Exists');
+    Promise.reject('No Configuration Exists!');
 }
 
 var ALGORITHM, KEY, HMAC_ALGORITHM, HMAC_KEY;
@@ -43,48 +38,47 @@ var constant_time_compare = function (val1, val2) {
 
 module.exports = {
 
-    "enc": {
-        run : function (plain_text) {
+    "encrypt": function (plain_text) {
+        if (!plain_text || typeof(plain_text) !== "string") Promise.reject("Plain text not found.");
 
-            var IV = Buffer.from(randomValueHex(16)); // ensure that the IV (initialization vector) is random
-            var encryptor, cipher_text, hmac;
+        var IV = Buffer.from(randomValueHex(16)); // ensure that the IV (initialization vector) is random
+        var encryptor, cipher_text, hmac;
 
-            encryptor = crypto.createCipheriv(ALGORITHM, KEY, IV);
-            encryptor.setEncoding('hex');
-            encryptor.write(plain_text);
-            encryptor.end();
+        encryptor = crypto.createCipheriv(ALGORITHM, KEY, IV);
+        encryptor.setEncoding('hex');
+        encryptor.write(plain_text);
+        encryptor.end();
 
-            cipher_text = encryptor.read();
+        cipher_text = encryptor.read();
 
-            hmac = crypto.createHmac(HMAC_ALGORITHM, HMAC_KEY);
-            hmac.update(cipher_text);
-            hmac.update(IV.toString('hex')); // ensure that both the IV and the cipher-text is protected by the HMAC
+        hmac = crypto.createHmac(HMAC_ALGORITHM, HMAC_KEY);
+        hmac.update(cipher_text);
+        hmac.update(IV.toString('hex')); // ensure that both the IV and the cipher-text is protected by the HMAC
 
-            // The IV isn't a secret so it can be stored along side everything else
-            return cipher_text + "$" + IV.toString('hex') + "$" + hmac.digest('hex') 
-        }
+        // The IV isn't a secret so it can be stored along side everything else
+        return cipher_text + "$" + IV.toString('hex') + "$" + hmac.digest('hex') 
     },
 
-    "dec": {
-        run : function (cipher_text) {
-            var cipher_blob = cipher_text.split("$");
-            var ct = cipher_blob[0];
-            var IV = Buffer.from(cipher_blob[1], 'hex');
-            var hmac = cipher_blob[2];
-            var chmac, decryptor;
+    "decrypt": function (cipher_text) {
+        if (!cipher_text || typeof(cipher_text) !== "string" || !cipher_text.match("$")) Promise.reject("A valid cipher text not found.");
 
-            chmac = crypto.createHmac(HMAC_ALGORITHM, HMAC_KEY);
-            chmac.update(ct);
-            chmac.update(IV.toString('hex'));
+        var cipher_blob = cipher_text.split("$");
+        var ct = cipher_blob[0];
+        var IV = Buffer.from(cipher_blob[1], 'hex');
+        var hmac = cipher_blob[2];
+        var chmac, decryptor;
 
-            if (!constant_time_compare(chmac.digest('hex'), hmac)) {
-                Promise.reject("Encrypted Blob has been tampered with...");
-                return null;
-            }
+        chmac = crypto.createHmac(HMAC_ALGORITHM, HMAC_KEY);
+        chmac.update(ct);
+        chmac.update(IV.toString('hex'));
 
-            decryptor = crypto.createDecipheriv(ALGORITHM, KEY, IV);
-            var decryptedText = decryptor.update(ct, 'hex', 'utf-8');
-            return decryptedText + decryptor.final('utf-8');
+        if (!constant_time_compare(chmac.digest('hex'), hmac)) {
+            Promise.reject("Encrypted Blob has been tampered with.");
         }
+
+        decryptor = crypto.createDecipheriv(ALGORITHM, KEY, IV);
+        var decryptedText = decryptor.update(ct, 'hex', 'utf-8');
+        return decryptedText + decryptor.final('utf-8');
     }
+
 }
