@@ -5,7 +5,7 @@ let crypto = require('crypto');
 try {
     var savedKeys = require("./config.js").k;
 } catch (e) {
-    Promise.reject('No Configuration Exists!');
+    return Promise.reject('No Configuration Exists!');
 }
 
 var ALGORITHM, KEY, HMAC_ALGORITHM, HMAC_KEY;
@@ -39,7 +39,7 @@ var constant_time_compare = function (val1, val2) {
 module.exports = {
 
     "encrypt": function (plain_text) {
-        if (!plain_text || typeof(plain_text) !== "string") Promise.reject("Plain text not found.");
+        if (!plain_text || typeof(plain_text) !== "string") return Promise.reject("Plain text not found.");
 
         var IV = Buffer.from(randomValueHex(16)); // ensure that the IV (initialization vector) is random
         var encryptor, cipher_text, hmac;
@@ -60,7 +60,7 @@ module.exports = {
     },
 
     "decrypt": function (cipher_text) {
-        if (!cipher_text || typeof(cipher_text) !== "string" || !cipher_text.match("$")) Promise.reject("A valid cipher text not found.");
+        if (!cipher_text || typeof(cipher_text) !== "string" || !cipher_text.match("$")) return Promise.reject("A valid cipher text not found.");
 
         var cipher_blob = cipher_text.split("$");
         var ct = cipher_blob[0];
@@ -73,7 +73,7 @@ module.exports = {
         chmac.update(IV.toString('hex'));
 
         if (!constant_time_compare(chmac.digest('hex'), hmac)) {
-            Promise.reject("Encrypted Blob has been tampered with.");
+            return Promise.reject("Encrypted Blob has been tampered with.");
         }
 
         decryptor = crypto.createDecipheriv(ALGORITHM, KEY, IV);
