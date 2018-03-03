@@ -1,7 +1,7 @@
 "use strict";
 
 let crypto = require("crypto");
-let projectRoot = require("path").dirname(require.main.filename);
+let projectRoot = require("path").dirname(require.main.children[0].filename).replace(/[\/\\]node_modules[\/\\].*/g, ""); // eslint-disable-line no-useless-escape
 
 /**
  * A basic encryption/decryption script/API for resting data for Node.js users.

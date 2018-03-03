@@ -3,7 +3,7 @@
 const detectNewline = require("detect-newline");
 const crypto = require("crypto"); // define crypto
 const fs = require("fs"); // define filesys
-let projectRoot = process.env.INIT_CWD;
+let projectRoot = require("path").dirname(require.main.children[0].filename).replace(/[\/\\]node_modules[\/\\].*/g, ""); // eslint-disable-line no-useless-escape
 let fetchedKey, fetchedHMAC, convertedConfig = false;
 
 const exit = (msg) => {
