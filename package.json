@@ -2,6 +2,9 @@
   "name": "basic256.js",
   "version": "1.2.0",
   "description": "A basic encryption/decryption script/API for resting data for Node.js users.",
+  "engines": {
+    "node": ">=8.4.0"
+  },
   "readme": "README.md",
   "maintainers": [
     "linuxgemini (ilteris@asenkron.com.tr)"

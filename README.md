@@ -1,12 +1,12 @@
 basic256.js
 =========================
 
+[![Build Status](https://travis-ci.org/linuxgemini/basic256.js.svg?branch=master)](https://travis-ci.org/linuxgemini/basic256.js)
+
 WARNING
 -------
 
 **THIS PACKAGE SAVES IMPORTANT KEYS ON YOUR PROJECT, DON'T LOSE IT.**
-
-[![Build Status](https://travis-ci.org/linuxgemini/basic256.js.svg?branch=master)](https://travis-ci.org/linuxgemini/basic256.js)
 
 A basic encryption/decryption script/API for resting data for Node.js users.
 
