@@ -3,7 +3,7 @@
 const detectNewline = require("detect-newline");
 const crypto = require("crypto"); // define crypto
 const fs = require("fs"); // define filesys
-let projectRoot = require("path").dirname(require.main.filename);
+let projectRoot = process.env.INIT_CWD;
 let fetchedKey, fetchedHMAC, convertedConfig = false;
 
 const exit = (msg) => {
