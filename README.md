@@ -23,12 +23,6 @@ And do this on your terminal if you are not root:
 $ npm install --save basic256.js
 `
 
-If you are running as root, do this:
-
-`
-$ npm install --unsafe-perm --save basic256.js
-`
-
 Then make your script connected. Example:
 
 ```js
