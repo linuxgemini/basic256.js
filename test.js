@@ -51,4 +51,9 @@ if (errCount === 0 && successCount === 3) {
         console.log("Test passed.");
         process.exit(0);
     }, 2222);
+} else {
+    setTimeout(() => {
+        console.log("Test failed.");
+        process.exit(1);
+    }, 2222);
 }
