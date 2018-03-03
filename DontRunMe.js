@@ -1,28 +1,60 @@
-'use strict';
+"use strict";
 
-let crypto = require('crypto'); // define crypto
-let fs = require('fs'); // define filesys
+const detectNewline = require("detect-newline");
+const crypto = require("crypto"); // define crypto
+const fs = require("fs"); // define filesys
+let projectRoot = require("path").dirname(require.main.filename);
+let fetchedKey, fetchedHMAC, convertedConfig = false;
 
-function randomValueHex (len) {
+const exit = (msg) => {
+    console.log(msg);
+    return setTimeout(() => {
+        process.exit(0);
+    }, 2000);
+};
+
+const randomValueHex = (len) => {
     return crypto.randomBytes(Math.ceil(len/2))
-        .toString('hex') // convert to hexadecimal format
+        .toString("hex") // convert to hexadecimal format
         .slice(0,len);   // return required number of characters
 };
 
-if (fs.existsSync("./config.js")) {
-    return setTimeout(function(){
-        process.exit(0); // exit script if config already exists
-    }, 833);
-}
+const main = () => {
+    if (fs.existsSync(`${projectRoot}/.gitignore`)) {
+        var file = fs.readFileSync(`${projectRoot}/.gitignore`).toString();
+        var newlineChar = detectNewline(file);
+        if (!file.includes(".basic256rc.js")) fs.appendFileSync(`${projectRoot}/.gitignore`, `${newlineChar}.basic256rc.js${newlineChar}`);
+    }
 
-let key = randomValueHex(32); // create random hex val for enc key
-let hmac = randomValueHex(32); // create random hex val for hmac key
-let randFold = "./" + randomValueHex(32) + "/"; // create random hex val with filesys encoding for folder
-let randFile = randomValueHex(32) + ".json"; // create random hex val with .json ending for file
-let resSysop = randFold + randFile; // merge foldername and filename
+    if (fs.existsSync(`${projectRoot}/.basic256rc.js`)) {
+        return exit("\n.basic256rc.js already exists, stopping setup.\n");
+    }
 
-fs.mkdirSync(randFold); // create folder
-fs.appendFileSync(resSysop, "{\n  \"key\": \"" + key + "\",\n  \"hmac_key\": \"" + hmac + "\"\n}\n"); // create file with keys necessary
-fs.appendFileSync("./config.js", "\'use strict\';\n\nvar k = require(\"" + resSysop + "\");\n\nmodule.exports = {\n  k\n};\n\n"); // generate config file with necessary info
+    if (fs.existsSync("./config.js")) {
+        try {
+            var c = require("./config.js").k;
+            if (c.key) fetchedKey = c.key;
+            if (c.hmac_key) fetchedHMAC = c.hmac_key;
+            convertedConfig = true;
+        } catch (e) {
+            fetchedKey = null,
+            fetchedHMAC = null;
+            console.warn(`\nThere is an old config.js file in package.\nHowever, reading of the keys have failed:\n\n${e.stack}\n`);
+        }
+    }
 
-setTimeout(function(){process.exit(0);}, 2000); // exit script
+    const enduserconfig = {
+        key: fetchedKey || randomValueHex(32), // create random hex val for enc key
+        hmac_key: fetchedHMAC || randomValueHex(32) // create random hex val for hmac key
+    };
+
+    fs.appendFileSync(`${projectRoot}/.basic256rc.js`, `"use strict";
+
+module.exports = ${JSON.stringify(enduserconfig, null, 4)}
+`); // generate config file with necessary info
+
+    if (convertedConfig) return exit("\nYour old configuration is saved to a file named .basic256rc.js has been created on the project root.\nDON'T FORGET TO BACK THIS UP.\n");
+    return exit("\nA file named .basic256rc.js has been created on the project root. DON'T FORGET TO BACK THIS UP.\n");
+};
+
+main();

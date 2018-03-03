@@ -3,10 +3,7 @@ sudo: enabled
 group: edge
 node_js:
   - "node"
-  - "7"
-  - "6"
-  - "5"
-  - "4"
+  - "8"
 install:
   - npm install
 script:
